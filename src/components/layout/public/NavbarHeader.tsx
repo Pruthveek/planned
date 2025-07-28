@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
 import { useState } from "react";
-
+import Link from "next/link"; 
 export function NavbarHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -81,13 +81,13 @@ export function NavbarHeader() {
                     )}
                   </MenuItem>
                 ) : (
-                  <a
+                  <Link
                     key={idx}
                     href={item.link}
                     className="text-sm font-medium text-black dark:text-white px-2 py-1"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )
               )}
             </Menu>
@@ -122,14 +122,14 @@ export function NavbarHeader() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={idx}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-black dark:text-white"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div className="flex flex-col w-full gap-3 pt-2">
               <NavbarButton
@@ -153,114 +153,3 @@ export function NavbarHeader() {
     </div>
   );
 }
-
-// "use client";
-// import {
-//   Navbar,
-//   NavBody,
-//   NavItems,
-//   MobileNav,
-//   NavbarLogo,
-//   NavbarButton,
-//   MobileNavHeader,
-//   MobileNavToggle,
-//   MobileNavMenu,
-// } from "@/components/ui/resizable-navbar";
-// import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
-// import { useState } from "react";
-
-// export function NavbarHeader() {
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-//   const navItems = [
-//     { name: "Product", link: "#", dropdown: true },
-//     { name: "Company", link: "#", dropdown: true },
-//     { name: "Pricing", link: "#pricing" },
-//     { name: "Become a partner", link: "#partner" },
-//     { name: "Plan event", link: "#plan" },
-//   ];
-
-//   return (
-//     <div className="relative w-full">
-//       <Navbar>
-//         <NavBody>
-//           <NavbarLogo />
-
-//           {/* Desktop nav items */}
-//           <div className="hidden lg:flex items-center gap-6">
-//             {navItems.map((item, idx) => (
-//               <div key={idx} className="relative group">
-//                 <a
-//                   href={item.link}
-//                   className="flex items-center gap-1 px-2 py-1 text-black dark:text-white text-sm font-medium"
-//                 >
-//                   {item.name}
-//                   {item.dropdown && (
-//                     <span className="text-xs">&#9662;</span> // ▼ icon
-//                   )}
-//                 </a>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Right-side buttons */}
-//           <div className="hidden lg:flex items-center gap-3">
-//             <NavbarButton variant="primary" className="border border-neutral-200">
-//               Log in
-//             </NavbarButton>
-//             <NavbarButton variant="dark">
-//               Talk to our team
-//               <span className="ml-1">›</span>
-//             </NavbarButton>
-//             <div className="pl-2 text-sm font-medium text-black dark:text-white cursor-pointer flex items-center gap-1">
-//               En <span className="text-xs">&#9662;</span>
-//             </div>
-//           </div>
-//         </NavBody>
-
-//         {/* Mobile Navigation */}
-//         <MobileNav>
-//           <MobileNavHeader>
-//             <NavbarLogo />
-//             <MobileNavToggle
-//               isOpen={isMobileMenuOpen}
-//               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-//             />
-//           </MobileNavHeader>
-
-//           <MobileNavMenu
-//             isOpen={isMobileMenuOpen}
-//             onClose={() => setIsMobileMenuOpen(false)}
-//           >
-//             {navItems.map((item, idx) => (
-//               <a
-//                 key={idx}
-//                 href={item.link}
-//                 onClick={() => setIsMobileMenuOpen(false)}
-//                 className="text-black dark:text-white"
-//               >
-//                 {item.name}
-//               </a>
-//             ))}
-//             <div className="flex flex-col w-full gap-3 pt-2">
-//               <NavbarButton
-//                 onClick={() => setIsMobileMenuOpen(false)}
-//                 variant="primary"
-//                 className="w-full border border-neutral-200"
-//               >
-//                 Log in
-//               </NavbarButton>
-//               <NavbarButton
-//                 onClick={() => setIsMobileMenuOpen(false)}
-//                 variant="dark"
-//                 className="w-full"
-//               >
-//                 Talk to our team
-//               </NavbarButton>
-//             </div>
-//           </MobileNavMenu>
-//         </MobileNav>
-//       </Navbar>
-//     </div>
-//   );
-// }

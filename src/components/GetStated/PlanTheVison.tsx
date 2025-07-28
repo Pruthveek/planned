@@ -6,6 +6,7 @@ import { Timeline } from "@/components/ui/timeline";
 import { timelineData } from "@/data/timelineData";
 import { eventData } from "@/data/eventData";
 import Marquee from "react-fast-marquee";
+import AnimatedArrowButton from "../ui/buttons/AnimatedArrowButton";
 export default function PlanTheVison() {
   return (
     <section className="py-16">
@@ -54,39 +55,51 @@ export default function PlanTheVison() {
                 perfect vendors, at the best price.
               </p>
               <div className="w-max">
-                <Link
-                  href="/plan-event"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 px-2.5 py-1.5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-900 transition-colors duration-300 rounded-md shadow-md h-8"
-                >
-                  <span>Create your event</span>
-                  <svg
-                    width="14"
-                    height="20"
-                    viewBox="0 0 14 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="mt-[1px]"
-                  >
-                    <path
-                      d="M3 10H10.5"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M7.25 13.5L10.75 10L7.25 6.5"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Link>
+                <AnimatedArrowButton text={"Create your event"} link="/"/>
               </div>
             </div>
             {/* bigger then xl*/}
+            <div className="hidden xl:flex justify-center w-full overflow-hidden">
+              <div className="absolute top-0  h-[64px] rotate-180 w-full z-10 rounded-tl-[12px] bg-white mask-t-from-0 mask-t-to-100%"></div>
+              <div className="absolute bottom-0 h-[64px] rotate-180 w-full z-10 rounded-tl-[12px] bg-white mask-b-from-0 mask-b-to-100%"></div>
+
+              <div className="max-h-[372px] overflow-hidden grid grid-cols-2 gap-8">
+                <div className="flex flex-col gap-8 animate-scroll-up">
+                  {[...eventData, ...eventData].map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-white p-1.5 rounded-xl overflow-hidden shadow-create-event-img-card outline-1 outline-offset-[-1px] outline-gray-200/40 max-w-[180px] shadow-lg"
+                    >
+                      <div className="relative w-[170px] h-[220px]">
+                        <Image
+                          src={item.src}
+                          alt={item.name}
+                          fill
+                          className="rounded-md object-cover"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-8 animate-scroll-down">
+                  {[...eventData, ...eventData].map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-white p-1.5 rounded-xl overflow-hidden shadow-create-event-img-card outline-1 outline-offset-[-1px] outline-gray-200/40 max-w-[180px] shadow-lg"
+                    >
+                      <div className="relative w-[170px] h-[220px]">
+                        <Image
+                          src={item.src}
+                          alt={item.name}
+                          fill
+                          className="rounded-md object-cover"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
             {/* smaller then xl */}
             <div className="relative flex xl:hidden ">
               <div className="absolute xl:bottom-0 left-0 w-[64px] rotate-180 h-full z-10 rounded-tl-[12px] bg-white mask-l-from-0% mask-l-to-100%"></div>

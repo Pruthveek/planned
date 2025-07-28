@@ -1,4 +1,4 @@
-
+// logoData.ts
 export const logoRowOne = [
   {
     name: "Amazon",

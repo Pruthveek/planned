@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 export default function StartYourEvent() {
   return (
-    <div className="p-4 overflow-hidden text-white ">
-        <div className=" bg-[#1E8FFF] bg-[url('https://planned-marketing-git-get-started-gift-card-planned.vercel.app/img/home/create-event/start-event.svg')] bg-cover bg-left bg-no-repeat w-full lg:max-w-7xl mx-auto rounded-[12px] shadow-lg relative overflow-visible md:overflow-hidden ">
+    <div className="p-4 overflow-hidden text-white rounded-xl">
+        <div className=" bg-[#1E8FFF] bg-[url('https://planned-marketing-git-get-started-gift-card-planned.vercel.app/img/home/create-event/start-event.svg')] bg-cover bg-left bg-no-repeat w-full lg:max-w-7xl mx-auto rounded-[12px] shadow-blue-300 shadow-2xl/40 relative overflow-visible md:overflow-hidden ">
           <div className="flex justify-center text-center ">
             <div className="p-[32px] lg:px-[80px] md:py-[64px] lg:py-[80px] lg:pl-[80px] flex flex-col gap-[32px] max-w-[632px] w-full">
               <h1 className="text-primary text-2xl xl:text-4xl font-medium leading-[40px] xl:leading-[48px] whitespace-pre-line">

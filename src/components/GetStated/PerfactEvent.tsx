@@ -5,6 +5,7 @@ import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { logoRowOne, logoRowTwo } from "@/data/helpingTeamsData";
 import Link from "next/link";
+import AnimatedArrowButton from "../ui/buttons/AnimatedArrowButton";
 
 export default function PerfactEvent() {
   const [isFirstRow, setIsFirstRow] = useState(true);
@@ -16,7 +17,7 @@ export default function PerfactEvent() {
       setTimeout(() => {
         setIsFirstRow((prev) => !prev);
         setBlurred(false);
-      }, 300); // blur duration
+      }, 300);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -25,7 +26,7 @@ export default function PerfactEvent() {
   const currentLogos = isFirstRow ? logoRowOne : logoRowTwo;
 
   return (
-    <section className="flex justify-center">
+    <section className="w-full flex justify-center">
       <div className="flex flex-col items-center px-4 lg:px-14 w-full">
         {/* Header */}
         <div className="flex flex-col items-center xl:flex-row w-full max-w-7xl">
@@ -53,36 +54,7 @@ export default function PerfactEvent() {
               —on time, on budget, and without the stress.
             </p>
             <div className="w-max">
-              <Link
-                href="/plan-event"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1.5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-900 transition-colors duration-300 rounded-md shadow-md h-8"
-              >
-                <span>Get started for free</span>
-                <svg
-                  width="14"
-                  height="20"
-                  viewBox="0 0 14 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mt-[1px]"
-                >
-                  <path
-                    d="M3 10H10.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M7.25 13.5L10.75 10L7.25 6.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
+              <AnimatedArrowButton text={"Get started for free"} link="/"/>
             </div>
           </div>
 

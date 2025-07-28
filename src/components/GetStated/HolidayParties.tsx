@@ -49,85 +49,105 @@ export default function HolidayParties() {
   return (
     <section className="py-16 flex flex-col items-center">
       {/* Heading */}
-      <div className="gap-5 flex flex-col items-center ">
-        <DashedBorderTag tag={"Event Stories"} />
+      <div className="gap-5 flex flex-col items-center">
+        <DashedBorderTag tag="Event Stories" />
         <div className="flex flex-col items-center max-w-lg text-center gap-2">
           <h1 className="text-primary text-2xl xl:text-4xl font-medium leading-[40px] xl:leading-[48px] whitespace-pre-line">
             From offsites to holiday parties
-            <br />
-            —we’ve planned it all
+            <br />—we’ve planned it all
           </h1>
           <p className="text-secondary text-base leading-6 whitespace-pre-line">
-            Lorem ipsum dolor sit amet consectetur. Varius suscipit tellus
-            ultricies tempus tristique dictum.
+            Lorem ipsum dolor sit amet consectetur. Varius suscipit tellus ultricies tempus tristique dictum.
           </p>
         </div>
       </div>
 
-      {/* Cards Grid with Animation */}
-      <div className="px-4 grid xl:grid-cols-2 xl:grid-rows-2 gap-8 mt-10 min-h-[500px]4">
+      {/* Custom 2-column layout */}
+      <div className="w-full max-w-7xl px-4 mt-12 grid grid-cols-1 xl:grid-cols-2 gap-8 auto-rows-min">
         <AnimatePresence mode="wait">
-          {currentCards.map((items,index) => (
-            <motion.div
-              key={items.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <HolidayPartiesCard
-                bgsrc={items.bgsrc}
-                logosrc={items.logosrc}
-                statistic={items.statistic}
-                statistictext={items.statistictext}
-                text={items.text}
-              />
-            </motion.div>
-          ))}
+          {/* Left Column */}
+          <div className="flex flex-col gap-8">
+            {currentCards[0] && (
+              <motion.div
+                key={currentCards[0].id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <HolidayPartiesCard
+                  {...currentCards[0]}
+                  heightClass="h-[440px]"
+                />
+              </motion.div>
+            )}
+            {currentCards[2] && (
+              <motion.div
+                key={currentCards[2].id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <HolidayPartiesCard
+                  {...currentCards[2]}
+                  heightClass="h-[300px]"
+                />
+              </motion.div>
+            )}
+          </div>
+
+          {/* Right Column */}
+          <div className="flex flex-col gap-8">
+            {currentCards[1] && (
+              <motion.div
+                key={currentCards[1].id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <HolidayPartiesCard
+                  {...currentCards[1]}
+                  heightClass="h-[300px]"
+                />
+              </motion.div>
+            )}
+            {currentCards[3] && (
+              <motion.div
+                key={currentCards[3].id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <HolidayPartiesCard
+                  {...currentCards[3]}
+                  heightClass="h-[440px]"
+                />
+              </motion.div>
+            )}
+          </div>
         </AnimatePresence>
       </div>
 
       {/* Pagination */}
-      <div className="flex flex-wrap justify-center items-center gap-2 mt-8">
+      <div className="flex flex-wrap justify-center items-center gap-2 mt-10">
         <button
-          onClick={handleNext}
-          disabled={currentPage === totalPages}
+          onClick={handlePrev}
+          disabled={currentPage === 1}
           className="px-3 py-1.5 border rounded text-sm disabled:opacity-50"
         >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 17 15"
-            fill="none"              
-            transform="scale(-1,1)"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              className="animated-arrow  svelte-9qliu"
-              d="M3 7H10.5"
-              stroke="#41494D"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            ></path>
-            <path
-              className="animated-arrow arrow-head  svelte-9qliu"
-              d="M7.25 10.5L10.75 7L7.25 3.5"
-              stroke="#41494D"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
+          <svg width="16" height="16" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7H10.5" stroke="#9CA5A9" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M7.25 10.5L10.75 7L7.25 3.5" stroke="#9CA5A9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-        {generatePageNumbers().map((page, index) => {
-          if (page === "...") {
-            return (
-              <span key={index} className="px-2 text-gray-400 text-sm">
-                ...
-              </span>
-            );
-          }
-          return (
+
+        {generatePageNumbers().map((page, index) =>
+          page === "..." ? (
+            <span key={index} className="px-2 text-gray-400 text-sm">...</span>
+          ) : (
             <button
               key={page}
               onClick={() => setCurrentPage(Number(page))}
@@ -139,36 +159,24 @@ export default function HolidayParties() {
             >
               {page}
             </button>
-          );
-        })}
+          )
+        )}
 
         <button
-          onClick={handlePrev}
-          disabled={currentPage === 1}
-          className="px-3 py-1.5 border rounded text-sm disabled:opacity-50 group"
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1.5 border rounded text-sm disabled:opacity-50"
         >
           <svg
             width="16"
             height="16"
             viewBox="0 0 17 15"
             fill="none"
+            transform="scale(-1,1)"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              className="animated-arrow  svelte-9qliu"
-              d="M3 7H10.5"
-              stroke="#9CA5A9"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            ></path>
-            <path
-              className="animated-arrow arrow-head  svelte-9qliu"
-              d="M7.25 10.5L10.75 7L7.25 3.5"
-              stroke="#9CA5A9"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
+            <path d="M3 7H10.5" stroke="#41494D" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M7.25 10.5L10.75 7L7.25 3.5" stroke="#41494D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       </div>

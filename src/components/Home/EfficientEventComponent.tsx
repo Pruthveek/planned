@@ -1,28 +1,20 @@
 import Image from "next/image";
 import { TextGenerateEffect } from "../ui/text-generate-effect";
 import ContractSummaryCard from "./ContractSummaryCard";
+import AnimatedArrowButton from "../ui/buttons/AnimatedArrowButton";
+import BadgeButton from "../ui/buttons/BadgeButton";
+import { companiesData } from "@/data/companiesData"; 
 
 export default function EfficientEventComponent() {
+  const liCSS="px-10 relative flex border-1 bp:py-0 border-solid border-collapse border-[#F0F3F5] bp:border-0 ";
+  const imageCSS="opacity-50"
   return (
-    <section className="w-full pl-5 py-20 md:pl-8 xl:pl-16 flex justify-center mx-auto  md:pt-20 ">
-      <div className="flex flex-col lg:flex-row lg:items-center overflow-hidden gap-10">
+    <section className="w-full pl-5 py-20 md:pl-8 xl:pl-16 flex flex-col justify-center mx-auto  md:pt-20 ">
+      <div className="flex flex-col lg:flex-row lg:items-center overflow-hidden gap-10 w-full mx-auto  max-w-max px-5 py-14 md:pt-20 md:pb-0 lg:px24" >
         {/* Left Content */}
         <div className="w-full xl:w-1/2 flex flex-col gap-6 max-w-md ">
-          {/* Announcement Badge */}
-          <div className="flex items-center gap-2 border border-[#D6DDE0] rounded-full bg-[#F7F9FA] p-1 max-w-fit">
-            <div className="bg-gradient-to-r from-black via-gray-700 to-black text-white text-xs font-medium px-1 py-0.5 rounded-full">
-              NEW
-            </div>
-            <div className="flex items-center text-sm font-medium text-gray-700 group">
-              Planned raises its $35M Series B
-              <span className="pl-2 font-bold transition-all duration-300">
-                <span className="group-hover:hidden">&gt;</span>
-                <span className="hidden group-hover:inline">→</span>
-              </span>
-            </div>
-          </div>
+          <BadgeButton lable="NEW" text="Planned raises its $35M Series B"/>
 
-          {/* Title and Description */}
           <div className="">
             <h1 className="text-2xl md:text-4xl text-primary leading-snug">
               Efficient event booking, from sourcing to payment
@@ -33,20 +25,13 @@ export default function EfficientEventComponent() {
             </p>
           </div>
 
-          {/* Email Input + Button */}
           <div className="flex max-w-fit gap-2 bg-white border border-gray-200 shadow-sm p-1 rounded-lg focus-within:border-blue-500 focus-within:shadow-md transition-all duration-300 mr-1">
             <input
               type="email"
               placeholder="What's your work email?"
               className="w-fit md:w-[200px] px-1 py-1 border-none focus:outline-none text-sm"
             />
-            <button className="w-fit md:w-[115px] group bg-blue-500 hover:bg-blue-600 text-white px-2  rounded-lg text-sm flex items-center gap-2 transition-all duration-300">
-              Watchdemo
-              <span className="font-bold">
-                <span className="group-hover:hidden">&gt;</span>
-                <span className="hidden group-hover:inline">→</span>
-              </span>
-            </button>
+            <AnimatedArrowButton text="Watchdemo" link="/"/>
           </div>
         </div>
 
@@ -62,7 +47,7 @@ export default function EfficientEventComponent() {
               {/* AI + Dashboard */}
               <div className="flex flex-col gap-[11px]">
                 {/* AI Prompt Card */}
-                <div className="p-1.5 rounded-lg flex items-center gap-2 bg-white border border-[#EADEFF] shadow-md shadow-gray-300
+                <div className="px-1.5 py-0.5 rounded-lg flex items-center gap-2 bg-white border border-[#EADEFF] shadow-md shadow-gray-300
                 relative top-0 left-20 w-[882px] ">
                   <Image
                     src="https://planned-marketing-git-get-started-gift-card-planned.vercel.app/img/ai-icon.svg"
@@ -94,6 +79,26 @@ export default function EfficientEventComponent() {
           </div>
         </div>
       </div>
+      <div className="w-full mx-auto  max-w-max px-5 py-14  md:px-28 md:pt-20 md:pb-0 lg:px24">
+            <div className="flex flex-col justify-center items-center max-w-7xl text-[16px] gap-[16px] text-[#7B8589]">
+              <div>Trusted by modern companies</div>
+                <ul className="grid grid-cols-2 md:grid-cols-6  ">
+                  {companiesData.map((items,index:number)=>(
+                    <li key={index} className={liCSS}>
+                    <Image
+                      src={items.src}
+                      alt={items.name}
+                      title={items.name}
+                      height={100}
+                      width={100}
+                      className={imageCSS}
+                    ></Image>
+                    
+                  </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
     </section>
   );
 }

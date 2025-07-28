@@ -20,7 +20,7 @@ export default function EventBooking() {
         </div>
       </div>
       <div className="flex flex-col items-center px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px] lg:max-w-6xl xl:max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-[32px] lg:max-w-6xl xl:max-w-7xl">
           {EventBookingCardData.map((items)=>(
             <EventBookingCard key={items.id} src={items.src} title={items.title} text={items.text}/>
           ))}
